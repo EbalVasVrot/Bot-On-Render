@@ -28,11 +28,11 @@ dp = Dispatcher()
 
 @dp.message(CommandStart())
 async def cmd_start(message: Message):
-    if WEB_APP_URL:
-    kb = ReplyKeyboardMarkup(
+if WEB_APP_URL:
+    kb = ReplyKeyboardMarkup(  # ✅ есть отступ (4 пробела)
         keyboard=[[KeyboardButton(text="Create", web_app=WebAppInfo(url=WEB_APP_URL))]],
         resize_keyboard=True,
-        )
+    )
         await message.answer("Привет! Нажми «Create», чтобы открыть мини‑апп.", reply_markup=kb)
     else:
         await message.answer("Привет! Бот на Render работает. Команда: /ping")
@@ -128,5 +128,6 @@ async def set_webhook(request: Request, token: str = Query(...)):
 async def root():
 
     return {"ok": True}
+
 
 
