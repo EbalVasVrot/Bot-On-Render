@@ -21,7 +21,7 @@ from aiogram.types import (
 from aiogram.exceptions import TelegramAPIError
 
 BOT_TOKEN = os.getenv("BOT_TOKEN") or os.getenv("BOTTOKEN")
-WEB_APP_URL = os.getenv("https://ebalvasvrot.github.io/student-id-generator/") or os.getenv("WEBAPPURL")
+WEB_APP_URL = os.getenv("WEB_APP_URL") or os.getenv("WEBAPPURL")
 WEBHOOK_SECRET = os.getenv("WEBHOOK_SECRET") or os.getenv("WEBHOOKSECRET")
 
 dp = Dispatcher()
@@ -128,3 +128,4 @@ async def set_webhook(request: Request, token: str = Query(...)):
 async def root():
 
     return {"ok": True}
+
