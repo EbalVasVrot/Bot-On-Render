@@ -21,7 +21,7 @@ from aiogram.types import (
 from aiogram.exceptions import TelegramAPIError
 
 BOT_TOKEN = os.getenv("BOT_TOKEN") or os.getenv("BOTTOKEN")
-WEB_APP_URL = os.getenv("WEB_APP_URL") or os.getenv("WEBAPPURL")
+WEB_APP_URL = os.getenv("WEB_APP_URL") or os.getenv("WEBAPPURL") or "https://ebalvasvrot.github.io/student-id-generator/"
 WEBHOOK_SECRET = os.getenv("WEBHOOK_SECRET") or os.getenv("WEBHOOKSECRET")
 
 dp = Dispatcher()
@@ -29,9 +29,9 @@ dp = Dispatcher()
 @dp.message(CommandStart())
 async def cmd_start(message: Message):
     if WEB_APP_URL:
-        kb = ReplyKeyboardMarkup(
-            keyboard=[[KeyboardButton(text="Create", web_app=WebAppInfo(url='https://ebalvasvrot.github.io/student-id-generator/'))]],
-            resize_keyboard=True,
+    kb = ReplyKeyboardMarkup(
+        keyboard=[[KeyboardButton(text="Create", web_app=WebAppInfo(url=WEB_APP_URL))]],
+        resize_keyboard=True,
         )
         await message.answer("Привет! Нажми «Create», чтобы открыть мини‑апп.", reply_markup=kb)
     else:
@@ -128,4 +128,5 @@ async def set_webhook(request: Request, token: str = Query(...)):
 async def root():
 
     return {"ok": True}
+
 
